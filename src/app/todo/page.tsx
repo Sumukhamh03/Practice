@@ -1,16 +1,23 @@
 'use client';
 
-import React, { useState } from 'react';
-import { FaPlus, FaTrash } from 'react-icons/fa';
+import React, { useState, useEffect } from 'react';
 
-const Page: React.FC = () => {
+const TodoApp: React.FC = () => {
+  const [task, setTask] = useState('');
   const [tasks, setTasks] = useState<string[]>([]);
-  const [newTask, setNewTask] = useState('');
+
+  useEffect(() => {
+    // Disable scrolling for the whole page
+    document.body.style.overflow = 'hidden';
+    return () => {
+      document.body.style.overflow = 'auto'; // Re-enable scrolling on unmount
+    };
+  }, []);
 
   const addTask = () => {
-    if (newTask.trim()) {
-      setTasks([...tasks, newTask]);
-      setNewTask('');
+    if (task.trim() !== '') {
+      setTasks([...tasks, task]);
+      setTask('');
     }
   };
 
@@ -18,54 +25,53 @@ const Page: React.FC = () => {
     setTasks(tasks.filter((_, i) => i !== index));
   };
 
-  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === 'Enter') {
-      addTask();
-    }
-  };
-
   return (
-    <div className="flex justify-center items-center min-h-screen bg-gradient-to-br from-purple-500 to-indigo-600 p-4">
-      <div className="w-full max-w-md bg-white shadow-lg rounded-xl p-6">
-        <h1 className="text-2xl font-bold text-gray-800 text-center mb-4">✨ My To-Do List ✨</h1>
-        <div className="flex gap-2 mb-4">
-          <input
-            type="text"
-            value={newTask}
-            onChange={(e) => setNewTask(e.target.value)}
-            onKeyDown={handleKeyDown}  // 👈 Listen for Enter key
-            placeholder="What do you need to do?"
-            className="flex-1 border border-gray-300 p-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
-          />
-          <button 
-            onClick={addTask} 
-            className="bg-indigo-500 hover:bg-indigo-600 text-white px-4 py-2 rounded-lg flex items-center justify-center transition duration-300"
-          >
-            <FaPlus />
-          </button>
-        </div>
-        <ul className="space-y-3">
-          {tasks.map((task, index) => (
-            <li 
-              key={index} 
-              className="flex justify-between items-center bg-gray-100 p-3 rounded-lg shadow-sm"
-            >
-              <span className="text-gray-800">{task}</span>
-              <button 
-                onClick={() => removeTask(index)} 
-                className="text-red-500 hover:text-red-600 transition duration-300"
+    <div className="flex flex-col items-center justify-center min-h-screen px-6 py-12 bg-gradient-to-r from-[#4A00E0] to-[#8E2DE2] text-white">
+      <h1 className="text-3xl font-bold mb-6">✅ Todo App</h1>
+
+      {/* Input Field */}
+      <div className="flex gap-3 mb-4">
+        <input
+          type="text"
+          value={task}
+          onChange={(e) => setTask(e.target.value)}
+          placeholder="Add a new task..."
+          className="px-4 py-2 rounded-lg text-gray-900 focus:outline-none shadow-md w-64"
+          onKeyDown={(e) => e.key === 'Enter' && addTask()}
+        />
+        <button
+          onClick={addTask}
+          className="px-5 py-2 bg-white text-blue-600 rounded-lg font-medium transition-all duration-300 shadow-md hover:bg-gray-200"
+        >
+          Add
+        </button>
+      </div>
+
+      {/* Scrollable Task List */}
+      <div className="w-full max-w-md max-h-[400px] overflow-y-auto bg-white p-4 rounded-lg shadow-lg text-gray-900">
+        {tasks.length === 0 ? (
+          <p className="text-gray-500 text-center">No tasks yet.</p>
+        ) : (
+          <ul className="space-y-3">
+            {tasks.map((task, index) => (
+              <li
+                key={index}
+                className="flex justify-between items-center bg-gray-100 p-3 rounded-lg shadow-md transition-all duration-300 hover:scale-105"
               >
-                <FaTrash />
-              </button>
-            </li>
-          ))}
-        </ul>
-        {tasks.length === 0 && (
-          <p className="text-gray-400 text-center mt-4">No tasks added yet 🎉</p>
+                <span>{task}</span>
+                <button
+                  onClick={() => removeTask(index)}
+                  className="text-red-500 hover:text-red-700"
+                >
+                  ❌
+                </button>
+              </li>
+            ))}
+          </ul>
         )}
       </div>
     </div>
   );
 };
 
-export default Page;
+export default TodoApp;

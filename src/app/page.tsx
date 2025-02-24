@@ -22,6 +22,10 @@ const page = () => {
       router.push("/plist")
     }
 
+    const handleTask5 = () => {
+      router.push("/cache")
+    }
+
   return (
     <div className='bg-black  h-screen w-screen gap-6 flex-col flex justify-center items-center text-white font-semibold'>
       <h1 className='text-2xl'>Tasks</h1>
@@ -29,7 +33,7 @@ const page = () => {
       <div onClick={handleTask2} className='bg-blue-600 py-2 px-4 rounded-lg cursor-pointer'>Task 2</div>
       <div onClick={handleTask3} className='bg-blue-600 py-2 px-4 rounded-lg cursor-pointer'>Task 3</div>
       <div onClick={handleTask4} className='bg-blue-600 py-2 px-4 rounded-lg cursor-pointer'>Task 4</div>
-
+      <div onClick={handleTask5} className='bg-blue-600 py-2 px-4 rounded-lg cursor-pointer'>Task 5</div>
 
     </div>
   )

@@ -5,10 +5,10 @@ import Image from 'next/image';
 
 const products = [
     { id: 1, name: 'Laptop', category: 'Electronics', image: "https://cdn.pixabay.com/photo/2020/12/11/11/22/laptop-5822575_1280.png" },
-    { id: 2, name: 'Sneakers', category: 'Footwear', image: 'https://example.com/sneakers.jpg' },
-    { id: 3, name: 'Headphones', category: 'Electronics', image: 'https://example.com/headphones.jpg' },
-    { id: 4, name: 'Backpack', category: 'Accessories', image: 'https://example.com/backpack.jpg' },
-    { id: 5, name: 'Smartphone', category: 'Electronics', image: 'https://example.com/smartphone.jpg' },
+    { id: 2, name: 'Sneakers', category: 'Footwear', image: 'https://cdn.pixabay.com/photo/2017/08/03/01/30/shoe-2574534_1280.jpg' },
+    { id: 3, name: 'Headphones', category: 'Electronics', image: 'https://cdn.pixabay.com/photo/2016/11/19/16/01/audio-1840073_1280.jpg' },
+    { id: 4, name: 'Backpack', category: 'Accessories', image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTxujvbTWifLQe_z35OPRyYJXeDwvIfW9cCzQ&s' },
+    { id: 5, name: 'Smartphone', category: 'Electronics', image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSkRuo3uPQL3Wy6KkId8mGvWdVtzhlzB-XAtw&s' },
   ];
   
 
