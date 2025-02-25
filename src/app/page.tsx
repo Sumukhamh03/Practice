@@ -27,7 +27,7 @@ const page = () => {
     }
 
   return (
-    <div className='bg-black  h-screen w-screen gap-6 flex-col flex justify-center items-center text-white font-semibold'>
+    <div className='bg-black  h-screen w-screen gap-6 flex-col flex justify-center items-center bg-gradient-to-r from-[#4A00E0] to-[#8E2DE2] text-white font-semibold'>
       <h1 className='text-2xl'>Tasks</h1>
       <div onClick={handleTask1} className='bg-blue-600 py-2 px-4 rounded-lg cursor-pointer'>Task 1</div>
       <div onClick={handleTask2} className='bg-blue-600 py-2 px-4 rounded-lg cursor-pointer'>Task 2</div>
